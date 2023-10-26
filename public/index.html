@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Processing Status</title>
+  </head>
+  <body>
+    <h1>Image Processing Status</h1>
+    <ul id="imageStatus"></ul>
+
+    <script>
+      const eventSource = new EventSource("/sse");
+
+      const imageStatus = document.getElementById("imageStatus");
+
+      eventSource.onmessage = function (event) {
+        const li = document.createElement("li");
+        li.textContent = event.data;
+        imageStatus.appendChild(li);
+      };
+    </script>
+  </body>
+</html>
